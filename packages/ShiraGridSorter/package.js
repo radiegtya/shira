@@ -1,6 +1,6 @@
 Package.describe({
     name: 'shira:grid-sorter',
-    version: '0.0.1',
+    version: '0.0.2',
     summary: 'package for Table sorter. This is a part of shira:grid-view',
     git: 'https://github.com/radiegtya/shira',
     documentation: 'README.md'

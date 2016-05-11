@@ -2,7 +2,7 @@ Package.describe({
     name: "shira:grid-view",
     summary: "Create a cool bootstrap table gridView with sortable, and pagination without hazzle",
     description: "This is part of Shira Plugins",
-    version: "0.0.2",
+    version: "0.0.3",
     git: "https://github.com/radiegtya/shira.git"
 });
 

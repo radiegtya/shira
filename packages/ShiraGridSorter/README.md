@@ -1,5 +1,9 @@
 this ShiraGridView extension used for sorting your table header ascending or descending.
 
+```
+meteor add shira:grid-sorter
+```
+
 how to use in your html view:
 ```
 <th id="btnSort" class="{{ShiraGridSorterClass 'name'}}" data="name">Name</th>

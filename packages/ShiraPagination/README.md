@@ -1,3 +1,7 @@
+```
+meteor add shira:pagination
+```
+
 How to use:
 
 in your html file, call this template alongside it's options
