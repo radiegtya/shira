@@ -14,7 +14,7 @@ if (Meteor.isClient) {
     };
 
     Template.hello.onCreated(function () {
- 
+
     });
 
     Template.hello.helpers({
@@ -32,7 +32,14 @@ if (Meteor.isClient) {
                 },
                 {
                     title: "Status",
-                    name: 'status'
+                    name: 'status',
+                    value: function (val) {
+                        return (val == true) ? 'done' : 'not yet';
+                    }
+                },
+                {
+                    title: "Template",
+                    template: "myTemplate"
                 },
             ];
         }

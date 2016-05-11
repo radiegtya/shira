@@ -15,7 +15,11 @@
                 <tr>
                     <th>{{number}}</th>
                     {{#each values}}
+                    {{#if this.template}}
+                    {{> Template.dynamic template=this.template}}
+                    {{else}}
                     <td>{{this}}</td>
+                    {{/if}}
                     {{/each}}
                 </tr>
                 {{/each}}

@@ -23,11 +23,23 @@ var Container = {
         var models = collection.find(selector, options);
         var j = 1 + ((pagination.currPage - 1) * options.limit);
         models.forEach(function (obj) {
+            var type = 'data';
             var getValues = function () {
                 var values = [];
                 for (var i = 0; i < data.length; i++) {
-                    var value = data[i].name;
-                    values[i] = obj[value] ? obj[value] : "";
+                    var name = data[i].name;
+
+                    values[i] = "";
+                    if (!data[i].value && name) {
+                        values[i] = obj[name];
+                    } else if (data[i].value) {
+                        var doc = obj[name] ? obj[name] : '';
+                        var value = data[i].value(doc);
+                        values[i] = value;
+                    }else if(data[i].template){
+                        values[i] = {template: data[i].template};
+                    }
+                    
                 }
                 return values;
             };
@@ -35,7 +47,6 @@ var Container = {
             rows.push({
                 number: j,
                 values: getValues(),
-                type: 'data'
             });
             j++;
         });
