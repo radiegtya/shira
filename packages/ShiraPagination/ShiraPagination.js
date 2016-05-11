@@ -3,13 +3,20 @@ var Container = {
     data: function (options) {
         var count = options.count;
         var limit = options.limit;
-        var totalPages = count / limit;
+        var totalPages = Math.round(count / limit);
         var pages = [];
         var currPage = this.state.get('currPage');
         var skip = (currPage - 1) * limit;
 
-        for (var i = 0; i < totalPages; i++) {
-            pages.push(i + 1);
+        if (currPage > 4) {
+            for (var i = currPage - 3; i <= currPage + 3; i++) {
+                if (i <= totalPages)
+                    pages.push(i);
+            }
+        } else {
+            for (var i = 1; i < 7; i++) {
+                pages.push(i);
+            }
         }
 
         var data = {
@@ -61,6 +68,15 @@ Template.ShiraPagination.events({
         var data = Container.data(this.options);
         if (data.currPage < data.totalPages)
             Container.state.set('currPage', data.currPage + 1);
+    },
+    'click #btnFirst': function (e) {
+        e.preventDefault();
+        Container.state.set('currPage', 1);
+    },
+    'click #btnLast': function (e) {
+        e.preventDefault();
+        var data = Container.data(this.options);
+        Container.state.set('currPage', data.totalPages);
     },
 });
 
