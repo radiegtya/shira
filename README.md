@@ -7,11 +7,15 @@ List of available packages:
 
 Create a cool bootstrap pagination without hazzle
 
+![alt text](http://content.screencast.com/users/Radiegtya/folders/Jing/media/3cf895ba-4988-4832-9671-1e49056bea9c/00000393.png)
+
 https://github.com/radiegtya/shira/tree/master/packages/ShiraPagination
 
 #### 2. Shira GridView
 
 Create a high quality bootstrap table gridView without hazzle
+
+![alt text](http://content.screencast.com/users/Radiegtya/folders/Jing/media/c0e42349-709d-4802-ba71-96e02a5531b3/00000398.png)
 
 https://github.com/radiegtya/shira/tree/master/packages/ShiraGridView
 
