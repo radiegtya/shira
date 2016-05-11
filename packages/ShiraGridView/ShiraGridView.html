@@ -10,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                {{#if Template.subscriptionsReady}}
+                
                 {{#each data.rows}}
                 <tr>
                     <th>{{number}}</th>
@@ -23,7 +23,16 @@
                     {{/each}}
                 </tr>
                 {{/each}}
-               {{/if}}
+                
+                {{#unless Template.subscriptionsReady}}
+                {{>spinner}}
+                {{/unless}}
+                
+                {{#if Template.subscriptionsReady}}
+                {{#if data.isEmpty}}
+                No Data Available
+                {{/if}}
+                {{/if}}
             </tbody>
         </table>
         {{> ShiraPagination options=paginationOptions}}

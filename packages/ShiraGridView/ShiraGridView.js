@@ -54,6 +54,7 @@ var Container = {
         return {
             titleRows: titleRows,
             rows: rows,
+            isEmpty: rows.length == 0?true:false
         };
     }
 };
