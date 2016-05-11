@@ -21,10 +21,10 @@ set the options via js
 ```javascript
 Template.myGridView.helpers({
     selector: function () {
-        return Container.selector();
+        return {};
     },
     options: function () {
-        return Container.options();
+        return {limit: 5, sort: {createdAt: -1}};
     },
     data: function () {
         return [
