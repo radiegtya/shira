@@ -13,7 +13,8 @@ Package.onUse(function (api) {
         'templating',
         'twbs:bootstrap@3.3.6',
         'reactive-dict',
-        'shira:pagination',
+        'shira:pagination@0.0.2',
+        'shira:grid-sorter@0.0.1'
     ], 'client');
     
     api.use([
@@ -31,6 +32,5 @@ Package.onUse(function (api) {
     ], 'server');
 
     api.export([
-//        'ShiraPagination'
     ], 'client');
 });

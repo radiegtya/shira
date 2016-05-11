@@ -5,7 +5,7 @@
                 <tr>
                     <th>#</th>
                     {{#each data.titleRows}}
-                    <th>{{this}}</th>
+                    <th id="btnSort" class="{{ShiraGridSorterClass this.name}}" data="{{this.name}}">{{this.title}}</th>
                     {{/each}}
                 </tr>
             </thead>

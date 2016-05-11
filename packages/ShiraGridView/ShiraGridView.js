@@ -12,18 +12,18 @@ var Container = {
         var titleRows = [];
         var rows = [];
         var pagination = ShiraPagination.data();
-
+        
         //fetch titleRows
         for (var i = 0; i < data.length; i++) {
             var title = data[i].title;
-            titleRows.push(title);
+            var name = data[i].name;
+            titleRows.push({title: title, name: name});
         }
 
         //fetch rows
         var models = collection.find(selector, options);
         var j = 1 + ((pagination.currPage - 1) * options.limit);
         models.forEach(function (obj) {
-            var type = 'data';
             var getValues = function () {
                 var values = [];
                 for (var i = 0; i < data.length; i++) {
@@ -63,6 +63,8 @@ Template.ShiraGridView.onCreated(function () {
     self.autorun(function () {
         var props = Container.props();
         props.options.skip = ShiraPagination.data().skip;
+        props.options.sort = ShiraGridSorter.getSort();
+        
         self.subscribe('ShiraGridViewPublish', props.collection, props.selector, props.options);
     });
 });
@@ -82,6 +84,10 @@ Template.ShiraGridView.helpers({
 });
 
 Template.ShiraGridView.events({
+    'click #btnSort': function(e){
+        var data = e.target.getAttribute('data');
+        ShiraGridSorter.setSort(data);
+    }
 });
 
 ShiraGridView = {
