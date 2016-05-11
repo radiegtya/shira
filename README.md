@@ -7,6 +7,10 @@ List of available packages:
 
 Create a cool bootstrap pagination without hazzle
 
+```
+meteor add shira:pagination
+```
+
 ![alt text](http://content.screencast.com/users/Radiegtya/folders/Jing/media/3cf895ba-4988-4832-9671-1e49056bea9c/00000393.png)
 
 https://github.com/radiegtya/shira/tree/master/packages/ShiraPagination
@@ -15,6 +19,10 @@ https://github.com/radiegtya/shira/tree/master/packages/ShiraPagination
 
 Create a high quality bootstrap table gridView without hazzle
 
+```
+meteor add shira:grid-view
+```
+
 ![alt text](http://content.screencast.com/users/Radiegtya/folders/Jing/media/c0e42349-709d-4802-ba71-96e02a5531b3/00000398.png)
 
 https://github.com/radiegtya/shira/tree/master/packages/ShiraGridView
@@ -22,6 +30,10 @@ https://github.com/radiegtya/shira/tree/master/packages/ShiraGridView
 #### 3. Shira GridSorter
 
 Create a bootstrap table  sorter without hazzle
+
+```
+meteor add shira:grid-sorter
+```
 
 https://github.com/radiegtya/shira/tree/master/packages/ShiraGridSorter
 
