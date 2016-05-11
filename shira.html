@@ -1,13 +1,18 @@
 <head>
-  <title>shira</title>
+    <title>shira</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+    <h1>Welcome to Meteor!</h1>
 
-  {{> hello}}
+    {{> hello}}
 </body>
 
 <template name="hello">
-  {{> ShiraPagination options=options}}
+    {{> ShiraGridView 
+      collection="todos"
+      selector=selector
+      options=options
+      data=data
+    }}
 </template>

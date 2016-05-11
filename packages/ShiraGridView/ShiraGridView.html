@@ -1,0 +1,27 @@
+<template name="ShiraGridView">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    {{#each data.titleRows}}
+                    <th>{{this}}</th>
+                    {{/each}}
+                </tr>
+            </thead>
+            <tbody>
+                {{#if Template.subscriptionsReady}}
+                {{#each data.rows}}
+                <tr>
+                    <th>{{number}}</th>
+                    {{#each values}}
+                    <td>{{this}}</td>
+                    {{/each}}
+                </tr>
+                {{/each}}
+               {{/if}}
+            </tbody>
+        </table>
+        {{> ShiraPagination options=paginationOptions}}
+    </div>
+</template>
