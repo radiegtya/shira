@@ -10,7 +10,17 @@ if (Meteor.isClient) {
         data: function () {
             return {
             };
-        }
+        },
+        selectorPosts: function () {
+            return {};
+        },
+        optionsPosts: function () {
+            return {limit: 5, sort: {createdAt: -1}};
+        },
+        dataPosts: function () {
+            return {
+            };
+        },
     };
 
     Template.hello.onCreated(function () {
@@ -42,7 +52,24 @@ if (Meteor.isClient) {
                     template: "myTemplate"
                 },
             ];
-        }
+        },
+    });
+    
+    Template.posts.helpers({
+        selectorPosts: function () {
+            return Container.selectorPosts();
+        },
+        optionsPosts: function () {
+            return Container.optionsPosts();
+        },
+        dataPosts: function () {
+            return [
+                {
+                    title: "Title",
+                    name: 'title'
+                },
+            ];
+        },
     });
 
 }

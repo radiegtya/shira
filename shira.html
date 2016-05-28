@@ -9,11 +9,21 @@
 </body>
 
 <template name="hello">
-    {{> ShiraGridView 
+<!--    {{> ShiraGridView 
       collection="todos"
       selector=selector
       options=options
       data=data
+    }}-->
+    {{>posts}}
+</template>
+
+<template name="posts">
+    {{> ShiraGridView 
+      collection="posts"
+      selector=selectorPosts
+      options=optionsPosts
+      data=dataPosts
     }}
 </template>
 

@@ -3,7 +3,7 @@ var Container = {
     data: function (options) {
         var count = options.count;
         var limit = options.limit;
-        var totalPages = Math.round(count / limit);
+        var totalPages = Math.ceil(count / limit);
         var pages = [];
         var currPage = this.state.get('currPage');
         var skip = (currPage - 1) * limit;
@@ -13,8 +13,12 @@ var Container = {
                 if (i <= totalPages)
                     pages.push(i);
             }
+        } else if(totalPages < 7) {
+            for (var i = 1; i <= totalPages; i++) {
+                pages.push(i);
+            }
         } else {
-            for (var i = 1; i < 7; i++) {
+            for (var i = 1; i <= 7; i++) {
                 pages.push(i);
             }
         }
