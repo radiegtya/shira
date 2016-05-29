@@ -28,7 +28,9 @@ var Container = {
         for (var i = 0; i < data.length; i++) {
             var title = data[i].title;
             var name = data[i].name;
-            titleRows.push({title: title, name: name});
+            var value = data[i].value;
+            var template = data[i].template;
+            titleRows.push({title: title, name: name, value: value, template: template});
         }
 
         //fetch rows
@@ -78,9 +80,8 @@ Template.ShiraGridView.onCreated(function () {
         //use reactive selector if exists
         var selector = props.selector ? props.selector : {};
         var reactiveSelector = Container.state.get('selector');
-        if (reactiveSelector) {
+        if (reactiveSelector)
             selector = reactiveSelector;
-        }
 
         //use reactive options if exists
         var options = props.options ? props.options : {};
@@ -89,6 +90,7 @@ Template.ShiraGridView.onCreated(function () {
         var reactiveOptions = Container.state.get('options');
         if (reactiveOptions)
             options = reactiveOptions;
+        console.log(options)
 
         self.subscribe('ShiraGridViewPublish', props.collection, selector, options);
     });
@@ -105,6 +107,11 @@ Template.ShiraGridView.helpers({
             count: Counts.get(this.collection),
             limit: options.limit
         };
+    },
+    showSearchField: function () {
+        if (this.value || this.template)
+            return false;
+        return true;
     }
 });
 
@@ -119,15 +126,20 @@ Template.ShiraGridView.events({
 
         //fetch titleRows
         for (var i = 0; i < this.data.length; i++) {
-            var name = $(e.target).find('#' + this.data[i].name).val();
-            selector[this.data[i].name] = {$regex: name, $options: 'i'};
+            if (!this.data[i].value && !this.data[i].template) {
+                var name = $(e.target).find('#' + this.data[i].name).val();
+                selector[this.data[i].name] = {$regex: name, $options: 'i'};
+            }
         }
 
-        var options = this.options;
-        options.skip = 0; //reset to 0 every searching doc
+        //reset to 0 every searching doc, if only 1 data exists
+        if(ShiraPagination.data().totalPages == 1){
+          var options = this.options;
+          options.skip = 0;
+          Container.state.set('options', options);
+        }
 
         Container.state.set('selector', selector);
-        Container.state.set('options', options);
     }
 });
 

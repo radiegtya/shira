@@ -14,10 +14,12 @@
                 <div class="panel-body">
                     <form id="searchForm">
                         {{#each data.titleRows}}
+                        {{#if showSearchField}}
                         <div class="form-group">
                             <label for="{{this.name}}">{{this.title}}</label>
                             <input type="text" class="form-control" id="{{this.name}}" placeholder="{{this.title}}">
                         </div>
+                        {{/if}}
                         {{/each}}
                         <button type="submit" class="btn btn-default">Search</button>
                     </form>
