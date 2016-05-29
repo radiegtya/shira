@@ -11,6 +11,7 @@ Package.onUse(function (api) {
 
     api.use([
         'templating',
+        'jquery',
         'twbs:bootstrap@3.3.6',
         'reactive-dict',
         'shira:pagination@0.0.3',
@@ -33,5 +34,6 @@ Package.onUse(function (api) {
     ], 'server');
 
     api.export([
+        'ShiraGridView'
     ], 'client');
 });

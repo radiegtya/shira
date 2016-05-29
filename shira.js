@@ -2,7 +2,10 @@ if (Meteor.isClient) {
 
     var Container = {
         selector: function () {
-            return {};
+            if(ShiraGridView.selector())
+                return ShiraGridView.selector();
+            else 
+                return {};
         },
         options: function () {
             return {limit: 5, sort: {createdAt: -1}};

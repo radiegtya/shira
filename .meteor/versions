@@ -63,7 +63,7 @@ sacha:spin@2.3.1
 session@1.1.1
 shira:grid-sorter@0.0.2
 shira:grid-view@0.0.4
-shira:pagination@0.0.3
+shira:pagination@0.0.4
 spacebars@1.0.7
 spacebars-compiler@1.0.7
 standard-minifiers@1.0.2

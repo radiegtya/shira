@@ -1,4 +1,32 @@
 <template name="ShiraGridView">
+
+    {{#if this.advanceSearch}}
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAdvanceSearch" aria-expanded="false" aria-controls="collapseOne">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Advance Search
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseAdvanceSearch" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <form id="searchForm">
+                        {{#each data.titleRows}}
+                        <div class="form-group">
+                            <label for="{{this.name}}">{{this.title}}</label>
+                            <input type="text" class="form-control" id="{{this.name}}" placeholder="{{this.title}}">
+                        </div>
+                        {{/each}}
+                        <button type="submit" class="btn btn-default">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -10,7 +38,7 @@
                 </tr>
             </thead>
             <tbody>
-                
+
                 {{#each data.rows}}
                 <tr>
                     <th>{{number}}</th>
@@ -23,11 +51,11 @@
                     {{/each}}
                 </tr>
                 {{/each}}
-                
+
                 {{#unless Template.subscriptionsReady}}
                 {{>spinner}}
                 {{/unless}}
-                
+
                 {{#if Template.subscriptionsReady}}
                 {{#if data.isEmpty}}
                 No Data Available
