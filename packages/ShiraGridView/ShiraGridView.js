@@ -50,7 +50,7 @@ var Container = {
                         var value = data[i].value(doc);
                         values[i] = value;
                     } else if (data[i].template) {
-                        values[i] = {template: data[i].template};
+                        values[i] = {template: data[i].template, templateData: obj};
                     }
 
                 }
@@ -90,7 +90,6 @@ Template.ShiraGridView.onCreated(function () {
         var reactiveOptions = Container.state.get('options');
         if (reactiveOptions)
             options = reactiveOptions;
-        console.log(options)
 
         self.subscribe('ShiraGridViewPublish', props.collection, selector, options);
     });

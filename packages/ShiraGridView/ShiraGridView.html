@@ -46,7 +46,7 @@
                     <th>{{number}}</th>
                     {{#each values}}
                     {{#if this.template}}
-                    {{> Template.dynamic template=this.template}}
+                    {{> Template.dynamic template=this.template data=this.templateData}}
                     {{else}}
                     <td>{{this}}</td>
                     {{/if}}

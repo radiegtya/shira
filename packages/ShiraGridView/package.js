@@ -2,7 +2,7 @@ Package.describe({
     name: "shira:grid-view",
     summary: "Create a cool bootstrap table gridView with sortable, and pagination without hazzle",
     description: "This is part of Shira Plugins",
-    version: "0.0.4",
+    version: "0.0.7",
     git: "https://github.com/radiegtya/shira.git"
 });
 
@@ -18,7 +18,7 @@ Package.onUse(function (api) {
         'shira:grid-sorter@0.0.2',
         'sacha:spin@2.3.1'
     ], 'client');
-    
+
     api.use([
         'dburles:mongo-collection-instances@0.3.5',
         'tmeasday:publish-counts@0.7.3'

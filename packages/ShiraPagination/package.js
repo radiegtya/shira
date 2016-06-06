@@ -2,7 +2,7 @@ Package.describe({
     name: "shira:pagination",
     summary: "Create a cool bootstrap pagination without hazzle",
     description: "This is part of shira:grid-view",
-    version: "0.0.4",
+    version: "0.0.5",
     git: "https://github.com/radiegtya/shira.git"
 });
 

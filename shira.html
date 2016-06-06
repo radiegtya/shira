@@ -9,18 +9,18 @@
 </body>
 
 <template name="hello">
-    {{> ShiraGridView 
+    {{> ShiraGridView
       collection="todos"
       selector=selector
       options=options
       data=data
       advanceSearch=true
     }}
-    <!--{{>posts}}-->
+    <!-- {{>posts}} -->
 </template>
 
 <template name="posts">
-    {{> ShiraGridView 
+    {{> ShiraGridView
       collection="posts"
       selector=selectorPosts
       options=optionsPosts
@@ -30,5 +30,6 @@
 </template>
 
 <template name="myTemplate">
+    {{_id}}
     <a class="btn btn-success">View</a>
 </template>
