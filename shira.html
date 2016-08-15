@@ -21,6 +21,15 @@
 
 <template name="posts">
     {{> ShiraGridView
+      id="posts1"
+      collection="posts"
+      selector=selectorPosts
+      options=optionsPosts
+      data=dataPosts
+      advanceSearch=true
+    }}
+    {{> ShiraGridView
+      id="posts2"
       collection="posts"
       selector=selectorPosts
       options=optionsPosts

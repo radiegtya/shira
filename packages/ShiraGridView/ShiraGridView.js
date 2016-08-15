@@ -6,23 +6,26 @@ var Container = {
     data: function (props) {
         var collection = Mongo.Collection.get(props.collection);
 
+        //use id if exists
+        var id = props.id ? props.id : "noname";
+
         //use reactive selector if exists
         var selector = props.selector ? props.selector : {};
-        var reactiveSelector = Container.state.get('selector');
+        var reactiveSelector = Container.state.get('selector' + id);
         if (reactiveSelector)
             selector = reactiveSelector;
 
         //use reactive options if exists
         var options = props.options ? props.options : {};
         options.skip = 0; //always set 0 for client
-        var reactiveOptions = Container.state.get('options');
+        var reactiveOptions = Container.state.get('options' + id);
         if (reactiveOptions)
             options = reactiveOptions;
 
         var data = props.data;
         var titleRows = [];
         var rows = [];
-        var pagination = ShiraPagination.data();
+        var pagination = ShiraPagination.data(id);
 
         //fetch titleRows
         for (var i = 0; i < data.length; i++) {
@@ -75,12 +78,13 @@ var Container = {
 
 Template.ShiraGridView.onCreated(function () {
     var self = this;
+    var id = Template.currentData().id;
     self.autorun(function () {
         var props = Container.props();
 
         //use reactive selector if exists
         var selector = props.selector ? props.selector : {};
-        var reactiveSelector = Container.state.get('selector');
+        var reactiveSelector = Container.state.get('selector' + id);
         if (reactiveSelector)
             selector = reactiveSelector;
 
@@ -88,7 +92,7 @@ Template.ShiraGridView.onCreated(function () {
         var options = props.options ? props.options : {};
         options.skip = ShiraPagination.data().skip;
         options.sort = ShiraGridSorter.getSort();
-        var reactiveOptions = Container.state.get('options');
+        var reactiveOptions = Container.state.get('options' + id);
         if (reactiveOptions)
             options = reactiveOptions;
 
@@ -122,6 +126,7 @@ Template.ShiraGridView.events({
     },
     'submit #searchForm': function (e) {
         e.preventDefault();
+        var id = Template.currentData().id;
         var selector = this.selector;
 
         //fetch titleRows
@@ -136,10 +141,10 @@ Template.ShiraGridView.events({
         if(ShiraPagination.data().totalPages == 1){
           var options = this.options;
           options.skip = 0;
-          Container.state.set('options', options);
+          Container.state.set('options' + id, options);
         }
 
-        Container.state.set('selector', selector);
+        Container.state.set('selector' + id, selector);
     }
 });
 
