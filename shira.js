@@ -4,7 +4,7 @@ if (Meteor.isClient) {
         selector: function () {
             if(ShiraGridView.selector())
                 return ShiraGridView.selector();
-            else 
+            else
                 return {};
         },
         options: function () {
@@ -57,7 +57,7 @@ if (Meteor.isClient) {
             ];
         },
     });
-    
+
     Template.posts.helpers({
         selectorPosts: function () {
             return Container.selectorPosts();
@@ -70,6 +70,14 @@ if (Meteor.isClient) {
                 {
                     title: "Title",
                     name: 'title'
+                },
+                {
+                    title: "Description",
+                    name: 'description'
+                },
+                {
+                    title: "Template",
+                    template: "myTemplate"
                 },
             ];
         },

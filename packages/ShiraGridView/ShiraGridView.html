@@ -14,12 +14,12 @@
                 <div class="panel-body">
                     <form id="searchForm">
                         {{#each data.titleRows}}
-                        {{#if showSearchField}}
-                        <div class="form-group">
-                            <label for="{{this.name}}">{{this.title}}</label>
-                            <input type="text" class="form-control" id="{{this.name}}" placeholder="{{this.title}}">
-                        </div>
-                        {{/if}}
+                          {{#if showSearchField}}
+                            <div class="form-group">
+                                <label for="{{this.name}}">{{this.title}}</label>
+                                <input type="text" class="form-control" id="{{this.name}}" placeholder="{{this.title}}">
+                            </div>
+                          {{/if}}
                         {{/each}}
                         <button type="submit" class="btn btn-default">Search</button>
                     </form>
@@ -35,7 +35,7 @@
                 <tr>
                     <th>#</th>
                     {{#each data.titleRows}}
-                    <th id="btnSort" class="{{ShiraGridSorterClass this.name}}" data="{{this.name}}">{{this.title}}</th>
+                      <th id="btnSort" class="{{ShiraGridSorterClass this.name}}" data="{{this.name}}">{{this.title}}</th>
                     {{/each}}
                 </tr>
             </thead>
@@ -45,23 +45,23 @@
                 <tr>
                     <th>{{number}}</th>
                     {{#each values}}
-                    {{#if this.template}}
-                    {{> Template.dynamic template=this.template data=this.templateData}}
-                    {{else}}
-                    <td>{{this}}</td>
-                    {{/if}}
+                      {{#if this.template}}
+                        {{> Template.dynamic template=this.template data=this.templateData}}
+                      {{else}}
+                        <td>{{this}}</td>
+                      {{/if}}
                     {{/each}}
                 </tr>
                 {{/each}}
 
                 {{#unless Template.subscriptionsReady}}
-                {{>spinner}}
+                  {{>spinner}}
                 {{/unless}}
 
                 {{#if Template.subscriptionsReady}}
-                {{#if data.isEmpty}}
-                No Data Available
-                {{/if}}
+                  {{#if data.isEmpty}}
+                    No Data Available
+                  {{/if}}
                 {{/if}}
             </tbody>
         </table>

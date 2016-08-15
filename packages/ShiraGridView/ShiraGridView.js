@@ -42,8 +42,9 @@ var Container = {
                 for (var i = 0; i < data.length; i++) {
                     var name = data[i].name;
 
-                    values[i] = "";
+                    values[i] = " ";
                     if (!data[i].value && name) {
+                      if(obj[name])
                         values[i] = obj[name];
                     } else if (data[i].value) {
                         var doc = obj[name] ? obj[name] : '';
