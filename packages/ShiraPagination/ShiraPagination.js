@@ -1,11 +1,11 @@
 var Container = {
     state: new ReactiveDict(),
-    data: function (options) {
+    data: function (id, options) {
         var count = options.count;
         var limit = options.limit;
         var totalPages = Math.ceil(count / limit);
         var pages = [];
-        var currPage = this.state.get('currPage');
+        var currPage = this.state.get('currPage' + id);
         var skip = (currPage - 1) * limit;
 
         if (currPage > 4) {
@@ -31,25 +31,29 @@ var Container = {
             skip: skip,
         };
 
-        this.state.set('data', data)
+        this.state.set('data' + id, data)
 
         return data;
     }
 };
 
 Template.ShiraPagination.onCreated(function () {
-    Container.state.set('currPage', 1);
-    Container.state.set('prev', null);
-    Container.state.set('data', null);
+    var id = Template.currentData().id;
+    Container.state.set('currPage' + id, 1);
+    Container.state.set('prev' + id, null);
+    Container.state.set('data' + id, null);
 });
 
 Template.ShiraPagination.helpers({
     data: function () {
-        var data = Container.data(this.options);
+        var id = this.id;
+        var options = this.options;
+        var data = Container.data(id, options);
         return data;
     },
     activeClass: function () {
-        var currPage = Container.state.get('currPage');
+        var id = Template.parentData().id;
+        var currPage = Container.state.get('currPage' + id);
         if (currPage == Number(this))
             return 'active';
         return 'disabled';
@@ -59,34 +63,39 @@ Template.ShiraPagination.helpers({
 Template.ShiraPagination.events({
     'click .btnPages': function (e) {
         e.preventDefault();
-        Container.state.set('currPage', Number(this));
+        var id = Template.parentData().id;
+        Container.state.set('currPage' + id, Number(this));
     },
     'click #btnPrev': function (e) {
         e.preventDefault();
-        var currPage = Container.state.get('currPage');
+        var id = Template.parentData().id;
+        var currPage = Container.state.get('currPage' + id);
         if (currPage > 1)
-            Container.state.set('currPage', currPage - 1);
+            Container.state.set('currPage' + id, currPage - 1);
     },
     'click #btnNext': function (e) {
         e.preventDefault();
-        var data = Container.data(this.options);
+        var id = Template.parentData().id;
+        var data = Container.data(id, this.options);
         if (data.currPage < data.totalPages)
-            Container.state.set('currPage', data.currPage + 1);
+            Container.state.set('currPage' + id, data.currPage + 1);
     },
     'click #btnFirst': function (e) {
         e.preventDefault();
-        Container.state.set('currPage', 1);
+        var id = Template.parentData().id;
+        Container.state.set('currPage' + id, 1);
     },
     'click #btnLast': function (e) {
         e.preventDefault();
-        var data = Container.data(this.options);
-        Container.state.set('currPage', data.totalPages);
+        var id = Template.parentData().id;
+        var data = Container.data(id, this.options);
+        Container.state.set('currPage' + id, data.totalPages);
     },
 });
 
 // console.log(Template.currentData())
 ShiraPagination = {
-    data: function () {
-        return Container.state.get('data') ? Container.state.get('data') : {skip: 0};
+    data: function (id) {
+        return Container.state.get('data' + id) ? Container.state.get('data' + id) : {skip: 0};
     }
 };
