@@ -20,13 +20,17 @@
 </template>
 
 <template name="posts">
-    {{> ShiraGridView
-      collection="posts"
-      selector=selectorPosts
-      options=optionsPosts
-      data=dataPosts
-      advanceSearch=true
+    {{> CybermantraGridView
+      columns=columns
+      dataProvider=dataProvider
     }}
+
+    {{> CybermantraGridView
+      columns=columns
+      dataProvider=dataProvider2
+    }}
+
+
 </template>
 
 <template name="myTemplate">

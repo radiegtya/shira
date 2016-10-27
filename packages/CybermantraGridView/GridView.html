@@ -1,0 +1,28 @@
+<template name="CybermantraGridView">
+
+  <div class="table-responsive">
+    <table class="table {{#if options.tableClass}}{{options.tableClass}}{{else}}table-striped{{/if}}">
+      <thead>
+        <tr>
+          {{#each headerColumns}}
+            <th>{{this}}</th>
+          {{/each}}
+        </tr>
+      </thead>
+      <tbody>
+        {{#each bodyColumns}}
+          <tr>
+            {{#each rows this}}
+              {{#if this.template}}
+                <td>{{> Template.dynamic template=this.template data=this.templateData}}</td>
+              {{else}}
+                <td>{{this}}</td>
+              {{/if}}
+            {{/each}}
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+</template>

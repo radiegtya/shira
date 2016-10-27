@@ -84,6 +84,7 @@ Template.ShiraPagination.events({
     },
 });
 
+// console.log(Template.currentData())
 ShiraPagination = {
     data: function () {
         return Container.state.get('data') ? Container.state.get('data') : {skip: 0};

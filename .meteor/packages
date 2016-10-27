@@ -19,3 +19,6 @@ insecure                # Allow all DB writes from clients (for prototyping)
 shira:pagination
 shira:grid-view
 peerlibrary:blaze-components
+cybermantra:grid-view
+cybermantra:pagination
+cybermantra:data-provider

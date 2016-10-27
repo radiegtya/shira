@@ -11,6 +11,9 @@ caching-html-compiler@1.0.2
 callback-hook@1.0.4
 check@1.1.0
 coffeescript@1.0.11
+cybermantra:data-provider@0.0.1
+cybermantra:grid-view@0.0.1
+cybermantra:pagination@0.0.1
 dburles:mongo-collection-instances@0.3.5
 ddp@1.2.2
 ddp-client@1.2.1
@@ -62,7 +65,7 @@ routepolicy@1.0.6
 sacha:spin@2.3.1
 session@1.1.1
 shira:grid-sorter@0.0.3
-shira:grid-view@0.0.7
+shira:grid-view@0.0.8
 shira:pagination@0.0.5
 spacebars@1.0.7
 spacebars-compiler@1.0.7
