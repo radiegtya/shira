@@ -34,6 +34,32 @@ class CybermantraPagination extends BlazeComponent{
     return pages;
   }
 
+  activeClass(){
+    const dataProvider = this.dataProvider;
+    const page = this.currentData();
+
+    return dataProvider.currPage() == Number(page)? "active": "disabled";
+  }
+
+  /**
+  * EVENTS HANDLER
+  */
+
+  handleChangePage(){
+    const dataProvider = this.dataProvider;
+    const options = dataProvider.options();
+    const page = this.currentData();
+
+    //reactively change currPage for page activeClass and paginationData
+    dataProvider.currPage(page);
+
+    //reactively change options.skip for query options
+    options.skip = 0;
+    dataProvider.options(options);
+
+    console.log(dataProvider)
+  }
+
 }
 
 CybermantraPagination.register('CybermantraPagination');

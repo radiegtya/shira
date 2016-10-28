@@ -1,10 +1,12 @@
 class posts extends BlazeComponent{
 
   onCreated(){
-    this.dp = DataProvider(Posts);
-    this.dp2 = DataProvider(Todos);
+
 
     this.autorun(()=>{
+      this.dp = DataProvider(Posts);
+      this.dp2 = DataProvider(Todos);
+
       this.subscribe('posts', this.dp.selector(), this.dp.options());
     });
   }

@@ -9,7 +9,7 @@ class CybermantraGridView extends BlazeComponent {
     this.columns = columns;
 
     this.autorun(()=>{
-      this.subscribe('CmGridViewCounter', dataProvider.collection._name)
+      this.subscribe('CybermantraGridViewCounter', dataProvider.collection._name)
     });
   }
 

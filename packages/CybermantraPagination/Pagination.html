@@ -12,7 +12,7 @@
                 </a>
             </li>
             {{#each pages}}
-              <li class="{{activeClass}}"><a class="btnPages" href="#">{{this}}</a></li>
+              <li class="{{activeClass}}"><a onClick="{{handleChangePage}}" class="btnPages" href="#">{{this}}</a></li>
             {{/each}}
             <li>
                 <a onClick="{{handleNext}}" href="#" aria-label="Next">

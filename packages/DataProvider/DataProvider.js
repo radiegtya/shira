@@ -5,6 +5,7 @@ DataProvider = function(collection){
     options: new ReactiveField({
       sort: {createdAt: -1},
       limit: 5,
+      skip: 0
     }),
     count: new ReactiveField(0),
     currPage: new ReactiveField(1)
