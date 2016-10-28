@@ -12,15 +12,10 @@ Package.onUse(function (api) {
     api.use([
         'peerlibrary:blaze-components',
         'twbs:bootstrap@3.3.6',
-        'session'
     ], 'client');
 
     api.addFiles([
         'Pagination.html',
         'Pagination.js',
-    ], 'client');
-
-    api.export([
-        'CybermantraPaginationStore'
     ], 'client');
 });

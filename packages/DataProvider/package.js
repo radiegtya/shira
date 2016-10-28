@@ -14,6 +14,7 @@ Package.onUse(function (api) {
     ], 'client');
 
     api.use([
+        'dburles:mongo-collection-instances@0.3.5',
         'tmeasday:publish-counts@0.7.3'
     ], ['server', 'client']);
 

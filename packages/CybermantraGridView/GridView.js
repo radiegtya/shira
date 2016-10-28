@@ -2,6 +2,15 @@ class CybermantraGridView extends BlazeComponent {
 
   onCreated(){
     super.onCreated();
+
+    //Available props
+    const {dataProvider, columns} = this.currentData();
+    this.dataProvider = dataProvider;
+    this.columns = columns;
+
+    this.autorun(()=>{
+      this.subscribe('CmGridViewCounter', dataProvider.collection._name)
+    });
   }
 
   /** private func to change title to proper case **/
@@ -11,7 +20,7 @@ class CybermantraGridView extends BlazeComponent {
 
   /** get headerColumns for thead.tr.th **/
   headerColumns(){
-    const columns = this.currentData().columns;
+    const columns = this.columns;
     let headerColumns = [];
     columns.forEach((obj)=>{
       const title = obj.title? obj.title: obj;
@@ -24,7 +33,7 @@ class CybermantraGridView extends BlazeComponent {
 
   /** get bodyColumns for tbody.tr **/
   bodyColumns(){
-    const dataProvider = this.currentData().dataProvider;
+    const dataProvider = this.dataProvider;
     const rows = dataProvider.collection.find(dataProvider.selector(), dataProvider.options());
 
     return rows;
@@ -44,6 +53,17 @@ class CybermantraGridView extends BlazeComponent {
     }
 
     return rows;
+  }
+
+  isEmpty(){
+    return this.bodyColumns().count() > 0 ? false: true;
+  }
+
+  paginationDataProvider(){
+    const dataProvider = this.dataProvider;
+    dataProvider.count(Counts.get(dataProvider.collection._name));
+
+    return dataProvider;
   }
 
 }

@@ -21,8 +21,22 @@
             {{/each}}
           </tr>
         {{/each}}
+
+        {{#unless Template.subscriptionsReady}}
+          {{>spinner}}
+        {{/unless}}
+
+
       </tbody>
     </table>
   </div>
+
+  {{#if Template.subscriptionsReady}}
+    {{#if isEmpty}}
+      No Data Available
+    {{else}}
+      {{> CybermantraPagination dataProvider=paginationDataProvider}}
+    {{/if}}
+  {{/if}}
 
 </template>

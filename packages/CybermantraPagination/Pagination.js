@@ -1,17 +1,21 @@
-const key = "Cybermantra.PaginationStore";
-const selectorKey = key + ".selector.";
-const optionsKey = key + ".options.";
-
 class CybermantraPagination extends BlazeComponent{
 
   onCreated(){
     super.onCreated();
+
+    //Available props
+    const {dataProvider} = this.currentData();
+    this.dataProvider = dataProvider;
+
+
   }
 
   /** to show pages number available **/
   pages(){
+    const dataProvider = this.dataProvider;
+    const totalPages = Math.ceil(dataProvider.count() / dataProvider.options().limit);
     let pages = [];
-    let currPage = 1;
+    const currPage = dataProvider.currPage();
     if (currPage > 4) {
         for (var i = currPage - 3; i <= currPage + 3; i++) {
             if (i <= totalPages)
@@ -29,11 +33,6 @@ class CybermantraPagination extends BlazeComponent{
 
     return pages;
   }
-
-}
-
-CybermantraPaginationStore = {
-
 
 }
 

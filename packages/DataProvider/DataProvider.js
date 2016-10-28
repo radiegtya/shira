@@ -1,13 +1,3 @@
-// DataProvider = new ReactiveField({
-//   id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
-//   selector: {},
-//   options: {
-//     sort: {createdAt: -1},
-//     limit: 5,
-//   },
-//   count: 0
-// });
-
 DataProvider = function(collection){
   return {
     collection: collection,
@@ -16,6 +6,7 @@ DataProvider = function(collection){
       sort: {createdAt: -1},
       limit: 5,
     }),
-    count: new ReactiveField(0)
+    count: new ReactiveField(0),
+    currPage: new ReactiveField(1)
   }
 }

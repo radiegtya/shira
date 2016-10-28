@@ -9,6 +9,8 @@ Package.describe({
 Package.onUse(function (api) {
     api.versionsFrom('1.2.1');
 
+    // api.imply('cybermantra:data-provider@0.0.1', 'client');
+
     api.use([
         'peerlibrary:blaze-components',
         'jquery',
@@ -18,6 +20,7 @@ Package.onUse(function (api) {
     ], 'client');
 
     api.use([
+        'dburles:mongo-collection-instances@0.3.5',
         'tmeasday:publish-counts@0.7.3'
     ], ['server', 'client']);
 
@@ -25,6 +28,10 @@ Package.onUse(function (api) {
         'GridView.html',
         'GridView.js',
     ], 'client');
+
+    api.addFiles([
+        'GridViewCounter.js',
+    ], 'server');
 
     api.export([
         'CybermantraGridViewStore'
