@@ -47,13 +47,16 @@ class CybermantraGridView extends BlazeComponent {
 
     // console.log(selector, options)
     let rows = collection.find(selector, options).fetch();
-    let j = 1 + ((dataProvider.currPage.get() - 1) * options.limit);
-    for(let i=0; i < rows.length; i++){
-      rows[i]['number'] = j;
-      j++;
-    }
-
+    
     return rows;
+  }
+
+  getRowNumber(index){
+    const {dataProvider} = this.data();
+    const options = dataProvider.options.get();
+    const rowNumber = index + 1 + ((dataProvider.currPage.get() - 1) * options.limit);
+
+    return rowNumber;
   }
 
   /** get bodyColumns.rows for tbody.td **/

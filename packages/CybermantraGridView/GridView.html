@@ -17,7 +17,7 @@
       <tbody>
         {{#each bodyColumns}}
           <tr>
-            <th>{{number}}</th>
+            <th>{{getRowNumber @index}}</th>
             {{#each rows this}}
               {{#if this.template}}
                 <td>{{> Template.dynamic template=this.template data=this.templateData}}</td>
