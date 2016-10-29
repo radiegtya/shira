@@ -3,7 +3,7 @@ class CybermantraGridView extends BlazeComponent {
   onCreated(){
     super.onCreated();
 
-    //Available props: dataProvider [function], columns[array]
+    //Available props: dataProvider [obj], columns[array]
     const {dataProvider} = this.currentData();
 
     this.autorun(()=>{
@@ -35,6 +35,12 @@ class CybermantraGridView extends BlazeComponent {
     const {collection} = dataProvider;
     const selector = dataProvider.selector.get();
     const options = dataProvider.options.get();
+
+    //always set skip to 0 on client to avoid pagination bug
+    options.skip = 0;
+
+    // console.log(selector, options)
+
     const rows = collection.find(selector, options);
 
     return rows;
@@ -61,11 +67,11 @@ class CybermantraGridView extends BlazeComponent {
   }
 
   paginationDataProvider(){
-    const {dataProvider} = this.props;
+    const {dataProvider} = this.currentData();
     const collectionName = dataProvider.collection._name;
 
     //set dataProvider.count
-    dataProvider.count(Counts.get(collectionName));
+    dataProvider.count.set(Counts.get(collectionName));
 
     return dataProvider;
   }

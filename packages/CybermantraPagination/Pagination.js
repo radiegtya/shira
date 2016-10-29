@@ -4,18 +4,20 @@ class CybermantraPagination extends BlazeComponent{
     super.onCreated();
 
     this.autorun(()=>{
-      //Available props
-      this.props = this.currentData();
+      //Available props dataProvider[obj]
     });
 
   }
 
   /** to show pages number available **/
   pages(){
-    const {dataProvider} = this.props;
-    const totalPages = Math.ceil(dataProvider().count / dataProvider().options.limit);
+    const {dataProvider} = this.currentData();
+    const count = dataProvider.count.get();
+    const limit = dataProvider.options.get().limit;
+    const currPage = dataProvider.currPage.get();
+    const totalPages = Math.ceil(count / limit);
     let pages = [];
-    const currPage = dataProvider().currPage;
+
     if (currPage > 4) {
         for (var i = currPage - 3; i <= currPage + 3; i++) {
             if (i <= totalPages)
@@ -35,12 +37,12 @@ class CybermantraPagination extends BlazeComponent{
   }
 
   activeClass(){
-    const {dataProvider} = this.props;
+    const {dataProvider} = this.data();
     const page = this.currentData();
 
-    console.log(dataProvider().currPage)
+    const currPage = dataProvider.currPage.get();
 
-    return dataProvider().currPage == Number(page)? "active": "disabled";
+    return currPage == Number(page)? "active": "disabled";
   }
 
   /**
@@ -48,12 +50,16 @@ class CybermantraPagination extends BlazeComponent{
   */
 
   handleChangePage(){
-    const {dataProvider} = this.props;
+    const {dataProvider} = this.data();
     const page = this.currentData();
 
-    dataProvider().currPage = page; //change currPage for page activeClass and paginationData
-    dataProvider().options.skip = (page - 1) * dataProvider().options.limit; //change options.skip for query options
-    dataProvider(dataProvider()); //reactively change all
+    //change currPage for page activeClass and paginationData
+    dataProvider.currPage.set(page);
+
+    //change options.skip for query options
+    const options = dataProvider.options.get();
+    options.skip = (page - 1) * options.limit;
+    dataProvider.options.set(options);
   }
 
 }
