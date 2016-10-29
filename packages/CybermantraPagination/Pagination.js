@@ -3,19 +3,19 @@ class CybermantraPagination extends BlazeComponent{
   onCreated(){
     super.onCreated();
 
-    //Available props
-    const {dataProvider} = this.currentData();
-    this.dataProvider = dataProvider;
-
+    this.autorun(()=>{
+      //Available props
+      this.props = this.currentData();
+    });
 
   }
 
   /** to show pages number available **/
   pages(){
-    const dataProvider = this.dataProvider;
-    const totalPages = Math.ceil(dataProvider.count() / dataProvider.options().limit);
+    const {dataProvider} = this.props;
+    const totalPages = Math.ceil(dataProvider().count / dataProvider().options.limit);
     let pages = [];
-    const currPage = dataProvider.currPage();
+    const currPage = dataProvider().currPage;
     if (currPage > 4) {
         for (var i = currPage - 3; i <= currPage + 3; i++) {
             if (i <= totalPages)
@@ -35,10 +35,12 @@ class CybermantraPagination extends BlazeComponent{
   }
 
   activeClass(){
-    const dataProvider = this.dataProvider;
+    const {dataProvider} = this.props;
     const page = this.currentData();
 
-    return dataProvider.currPage() == Number(page)? "active": "disabled";
+    console.log(dataProvider().currPage)
+
+    return dataProvider().currPage == Number(page)? "active": "disabled";
   }
 
   /**
@@ -46,18 +48,12 @@ class CybermantraPagination extends BlazeComponent{
   */
 
   handleChangePage(){
-    const dataProvider = this.dataProvider;
-    const options = dataProvider.options();
+    const {dataProvider} = this.props;
     const page = this.currentData();
 
-    //reactively change currPage for page activeClass and paginationData
-    dataProvider.currPage(page);
-
-    //reactively change options.skip for query options
-    options.skip = 0;
-    dataProvider.options(options);
-
-    console.log(dataProvider)
+    dataProvider().currPage = page; //change currPage for page activeClass and paginationData
+    dataProvider().options.skip = (page - 1) * dataProvider().options.limit; //change options.skip for query options
+    dataProvider(dataProvider()); //reactively change all
   }
 
 }

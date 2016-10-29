@@ -3,13 +3,11 @@ class CybermantraGridView extends BlazeComponent {
   onCreated(){
     super.onCreated();
 
-    //Available props
-    const {dataProvider, columns} = this.currentData();
-    this.dataProvider = dataProvider;
-    this.columns = columns;
+    //Available props: dataProvider [function], columns[array]
+    const {dataProvider} = this.currentData();
 
     this.autorun(()=>{
-      this.subscribe('CybermantraGridViewCounter', dataProvider.collection._name)
+      this.subscribe('CybermantraGridViewCounter', dataProvider.collection._name);
     });
   }
 
@@ -20,7 +18,7 @@ class CybermantraGridView extends BlazeComponent {
 
   /** get headerColumns for thead.tr.th **/
   headerColumns(){
-    const columns = this.columns;
+    const {columns} = this.currentData();
     let headerColumns = [];
     columns.forEach((obj)=>{
       const title = obj.title? obj.title: obj;
@@ -33,15 +31,18 @@ class CybermantraGridView extends BlazeComponent {
 
   /** get bodyColumns for tbody.tr **/
   bodyColumns(){
-    const dataProvider = this.dataProvider;
-    const rows = dataProvider.collection.find(dataProvider.selector(), dataProvider.options());
+    const {dataProvider} = this.currentData();
+    const {collection} = dataProvider;
+    const selector = dataProvider.selector.get();
+    const options = dataProvider.options.get();
+    const rows = collection.find(selector, options);
 
     return rows;
   }
 
   /** get bodyColumns.rows for tbody.td **/
   rows(row){
-    const columns = this.data().columns;
+    const columns = this.data().columns; //get parent columns which is used to get it's length later
     let rows = [];
 
     for(let i = 0; i < columns.length; i++){
@@ -60,8 +61,11 @@ class CybermantraGridView extends BlazeComponent {
   }
 
   paginationDataProvider(){
-    const dataProvider = this.dataProvider;
-    dataProvider.count(Counts.get(dataProvider.collection._name));
+    const {dataProvider} = this.props;
+    const collectionName = dataProvider.collection._name;
+
+    //set dataProvider.count
+    dataProvider.count(Counts.get(collectionName));
 
     return dataProvider;
   }

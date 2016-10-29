@@ -11,6 +11,7 @@ Package.onUse(function (api) {
 
     api.use([
         'peerlibrary:reactive-field',
+        'reactive-var'
     ], 'client');
 
     api.use([
@@ -23,6 +24,6 @@ Package.onUse(function (api) {
     ], 'client');
 
     api.export([
-        'DataProvider'
+        'DataProvider',
     ], 'client');
 });

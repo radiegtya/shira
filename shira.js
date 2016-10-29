@@ -1,13 +1,20 @@
 class posts extends BlazeComponent{
 
   onCreated(){
+    this.dataProvider = DataProvider(Posts);
 
+    this.dataProvider2 = DataProvider(Posts);
+    this.dataProvider2.selector.set({title: "posts 99"});
 
     this.autorun(()=>{
-      this.dp = DataProvider(Posts);
-      this.dp2 = DataProvider(Todos);
+      const selector = this.dataProvider.selector.get();
+      const options = this.dataProvider.options.get();
 
-      this.subscribe('posts', this.dp.selector(), this.dp.options());
+      const selector2 = this.dataProvider2.selector.get();
+      const options2 = this.dataProvider2.options.get();
+
+      this.subscribe('posts', selector, options);
+      this.subscribe('posts', selector2, options2);
     });
   }
 
@@ -33,13 +40,9 @@ class posts extends BlazeComponent{
     ]
   }
 
-  dataProvider(){
-    return this.dp;
-  }
-
-  dataProvider2(){
-    this.dp2.selector({title: "posts 99"});
-    return this.dp2;
+  handleChangeText(e){
+    const val = e.target.value;
+    this.dataProvider.selector.set({title: e.target.value});
   }
 
 }
