@@ -49,17 +49,60 @@ class CybermantraPagination extends BlazeComponent{
   * EVENTS HANDLER
   */
 
-  handleChangePage(){
-    const {dataProvider} = this.data();
-    const page = this.currentData();
-
-    //change currPage for page activeClass and paginationData
+  /**
+  * set currPage and options.skip reactively
+  */
+  _setPage(dataProvider, page){
+    //change currPage
     dataProvider.currPage.set(page);
 
     //change options.skip for query options
     const options = dataProvider.options.get();
     options.skip = (page - 1) * options.limit;
     dataProvider.options.set(options);
+  }
+
+  handleChangePage(e){
+    e.preventDefault();
+    const {dataProvider} = this.data();
+    const page = this.currentData();
+
+    this._setPage(dataProvider, page);
+  }
+
+  handleFirst(e){
+    e.preventDefault();
+    const {dataProvider} = this.currentData();
+
+    this._setPage(dataProvider, 1);
+  }
+
+  handlePrevious(e){
+    e.preventDefault();
+    const {dataProvider} = this.currentData();
+    const currPage = dataProvider.currPage.get();
+    if(currPage > 1)
+      this._setPage(dataProvider, currPage - 1);
+  }
+
+  handleNext(e){
+    e.preventDefault();
+    const {dataProvider} = this.currentData();
+    const currPage = dataProvider.currPage.get();
+    const count = dataProvider.count.get();
+    const limit = dataProvider.options.get().limit;
+    const totalPages = Math.ceil(count / limit);
+    if(currPage < totalPages)
+      this._setPage(dataProvider, currPage + 1);
+  }
+
+  handleLast(e){
+    e.preventDefault();
+    const {dataProvider} = this.currentData();
+    const count = dataProvider.count.get();
+    const limit = dataProvider.options.get().limit;
+    const totalPages = Math.ceil(count / limit);
+    this._setPage(dataProvider, totalPages);
   }
 
 }
