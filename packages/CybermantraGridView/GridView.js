@@ -21,9 +21,15 @@ class CybermantraGridView extends BlazeComponent {
     const {columns} = this.currentData();
     let headerColumns = [];
     columns.forEach((obj)=>{
+      const name = obj.name? obj.name: obj;
       const title = obj.title? obj.title: obj;
+      const template = obj.template? obj.template: null;
 
-      headerColumns.push(this._toTitleCase(title));
+      headerColumns.push({
+        title: title,
+        name: name,
+        template: template
+      });
     });
 
     return headerColumns;
@@ -74,6 +80,13 @@ class CybermantraGridView extends BlazeComponent {
     dataProvider.count.set(Counts.get(collectionName));
 
     return dataProvider;
+  }
+
+  handleSort(e){
+    e.preventDefault();
+    const {dataProvider} = this.data();
+    const {name} = this.currentData();
+    CybermantraGridSorter.setSort(dataProvider, name);
   }
 
 }

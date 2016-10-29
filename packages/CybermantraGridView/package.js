@@ -17,6 +17,8 @@ Package.onUse(function (api) {
         'twbs:bootstrap@3.3.6',
         'peerlibrary:reactive-field',
         'sacha:spin@2.3.1',
+        'cybermantra:pagination',
+        'cybermantra:grid-sorter',
     ], 'client');
 
     api.use([

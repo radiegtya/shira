@@ -12,6 +12,7 @@ callback-hook@1.0.4
 check@1.1.0
 coffeescript@1.0.11
 cybermantra:data-provider@0.0.1
+cybermantra:grid-sorter@0.0.1
 cybermantra:grid-view@0.0.1
 cybermantra:pagination@0.0.1
 dburles:mongo-collection-instances@0.3.5

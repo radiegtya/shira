@@ -5,7 +5,11 @@
       <thead>
         <tr>
           {{#each headerColumns}}
-            <th>{{this}}</th>
+            {{#if this.template}}
+              <th>{{this.title}}</th>
+            {{else}}
+              <th onClick="{{handleSort}}" class="{{CybermantraGridSorterClass ../dataProvider this.name}}">{{this.title}}</th>
+            {{/if}}
           {{/each}}
         </tr>
       </thead>

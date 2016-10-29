@@ -20,6 +20,5 @@ shira:pagination
 shira:grid-view
 peerlibrary:blaze-components
 cybermantra:grid-view
-cybermantra:pagination
 cybermantra:data-provider
 peerlibrary:reactive-field
