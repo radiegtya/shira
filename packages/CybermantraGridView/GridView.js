@@ -46,8 +46,12 @@ class CybermantraGridView extends BlazeComponent {
     options.skip = 0;
 
     // console.log(selector, options)
-
-    const rows = collection.find(selector, options);
+    let rows = collection.find(selector, options).fetch();
+    let j = 1 + ((dataProvider.currPage.get() - 1) * options.limit);
+    for(let i=0; i < rows.length; i++){
+      rows[i]['number'] = j;
+      j++;
+    }
 
     return rows;
   }
@@ -69,7 +73,7 @@ class CybermantraGridView extends BlazeComponent {
   }
 
   isEmpty(){
-    return this.bodyColumns().count() > 0 ? false: true;
+    return this.bodyColumns().length > 0 ? false: true;
   }
 
   paginationDataProvider(){

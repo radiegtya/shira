@@ -4,6 +4,7 @@
     <table class="table {{#if options.tableClass}}{{options.tableClass}}{{else}}table-striped{{/if}}">
       <thead>
         <tr>
+          <th>#</th>
           {{#each headerColumns}}
             {{#if this.template}}
               <th>{{this.title}}</th>
@@ -16,6 +17,7 @@
       <tbody>
         {{#each bodyColumns}}
           <tr>
+            <th>{{number}}</th>
             {{#each rows this}}
               {{#if this.template}}
                 <td>{{> Template.dynamic template=this.template data=this.templateData}}</td>
